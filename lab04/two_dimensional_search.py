@@ -9,21 +9,20 @@ def find_pattern_in_column(text_column: str, pattern_columns: list[str]) -> list
     Returns:
         Lista krotek (pozycja, indeks kolumny), gdzie znaleziono kolumnę wzorca
     """
-    results = []
-    text_len = len(text_column)
-    
-    for col_idx, pattern_col in enumerate(pattern_columns):
-        pattern_len = len(pattern_col)
-        
-        if pattern_len == 0:
-            continue
-        if pattern_len > text_len:
-            continue
+    results = [] 
+    text_len = len(text_column) 
 
+    # przechodzimy po wzorcach
+    for col_idx, pattern_col in enumerate(pattern_columns):
+        pattern_len = len(pattern_col) 
+
+        if pattern_len == 0 or pattern_len > text_len: continue
+
+        # przesun wzorzec po tekscie
         for pos in range(text_len - pattern_len + 1):
-            if text_column[pos:pos+pattern_len] == pattern_col:
-                results.append((pos, col_idx))
-                
+            # czy fragment pasuje
+            if text_column[pos:pos+pattern_len] == pattern_col: results.append((pos, col_idx)) # dodaj pozycje,index 
+
     return results
 
 
@@ -38,39 +37,28 @@ def find_pattern_2d(text: list[str], pattern: list[str]) -> list[tuple[int, int]
     Returns:
         Lista krotek (i, j), gdzie (i, j) to współrzędne lewego górnego rogu wzorca w tekście
     """
-    if not text or not pattern:
-        return []
-
+    if not text or not pattern or len(text) == 0 or len(pattern) == 0:  return []
     text_height = len(text)
-    if text_height == 0:
-        return []
-    
-    text_width = len(text[0])
-    if any(len(row) != text_width for row in text):
-        raise ValueError("Wszystkie wiersze tekstu muszą mieć taką samą długość")
-    
+    text_width = len(text[0]) 
     pattern_height = len(pattern)
-    if pattern_height == 0:
-        return []
-    
-    pattern_width = len(pattern[0])
-    if any(len(row) != pattern_width for row in pattern):
-        raise ValueError("Wszystkie wiersze wzorca muszą mieć taką samą długość")
+    pattern_width = len(pattern[0]) 
 
-    if pattern_height > text_height or pattern_width > text_width:
-        return []
-    
-    results = []
-    
+    if pattern_height > text_height or pattern_width > text_width: return []
+
+    results = [] 
+
+    # mozliwe pozycje startowe wierszy
     for i in range(text_height - pattern_height + 1):
+        # mozliwe pozycje startowe kolumn
         for j in range(text_width - pattern_width + 1):
-            match = True
+            match = True 
+
             for pi in range(pattern_height):
-                if text[i + pi][j:j + pattern_width] != pattern[pi]:
-                    match = False
-                    break
+                if text[i + pi][j:j + pattern_width] != pattern[pi]: # porwnianie wiersz z fragmentem tekstu
+                    match = False 
+                    break 
             
-            if match:
-                results.append((i, j))
-    
+            # czy wiersze pasuja
+            if match: results.append((i, j)) # Dodajemy pozycje lewego gornego
+
     return results

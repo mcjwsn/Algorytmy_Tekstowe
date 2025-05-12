@@ -36,10 +36,6 @@ def make_mask(pattern: str) -> list:
     Returns:
         Tablica 256 masek, gdzie każda maska odpowiada jednemu znakowi ASCII
     """
-    # TODO: Zaimplementuj tworzenie tablicy masek dla algorytmu Shift-Or
-    # TODO: Utwórz tablicę z maskami dla wszystkich znaków ASCII
-    # TODO: Dla każdego znaku w pattern, ustaw odpowiednie bity w maskach
-    #pass
     if not len(pattern): return []
 
     masks = [~0 for _ in range(256)]  # wszystkie maski na same 1 
@@ -59,13 +55,6 @@ def shift_or(text: str, pattern: str) -> list[int]:
     Returns:
         Lista pozycji (0-indeksowanych), na których znaleziono wzorzec
     """
-    # TODO: Zaimplementuj algorytm Shift-Or
-    # TODO: Obsłuż przypadki brzegowe (pusty wzorzec, wzorzec dłuższy niż tekst)
-    # TODO: Utwórz maski dla wzorca
-    # TODO: Zainicjalizuj stan początkowy
-    # TODO: Zaimplementuj główną logikę algorytmu
-    # TODO: Wykryj i zapisz pozycje dopasowań
-
 
     m = len(pattern)
     n = len(text)
@@ -89,8 +78,7 @@ def shift_or(text: str, pattern: str) -> list[int]:
             match_pos = i - m + 1
             
             if match_pos >= 0: # poczatkowa pozycja jest dodatnia
-                if text[match_pos:match_pos+m] == pattern:
-                    result.append(match_pos)
+                if text[match_pos:match_pos+m] == pattern: result.append(match_pos)
     
     return result
 
