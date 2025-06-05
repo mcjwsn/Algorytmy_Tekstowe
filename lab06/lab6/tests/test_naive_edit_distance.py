@@ -1,4 +1,4 @@
-from lab_6.naive_edit_distance import naive_edit_distance, naive_edit_distance_with_operations
+from lab6.naive_edit_distance import naive_edit_distance, naive_edit_distance_with_operations
 
 
 class TestNaiveEditDistance:

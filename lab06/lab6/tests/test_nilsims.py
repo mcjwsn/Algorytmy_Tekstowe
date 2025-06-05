@@ -1,4 +1,4 @@
-from lab_6.nilsims import (
+from lab6.nilsims import (
     NilsimsHash,
     nilsims_similarity,
     find_similar_texts

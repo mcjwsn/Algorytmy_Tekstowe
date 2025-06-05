@@ -1,4 +1,4 @@
-from lab_6.allison import allison_global_alignment, allison_local_alignment
+from lab6.allison import allison_global_alignment, allison_local_alignment
 
 
 class TestAllisonAlgorithm:

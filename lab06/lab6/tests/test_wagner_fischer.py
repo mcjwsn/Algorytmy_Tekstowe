@@ -1,4 +1,4 @@
-from lab_6.wagner_fischer import (
+from lab6.wagner_fischer import (
     wagner_fischer,
     wagner_fischer_with_alignment,
     wagner_fischer_space_optimized
